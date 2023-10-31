@@ -4,6 +4,7 @@ import { PrivateLayout, PublicLayout } from "./layouts";
 
 import AuthRoutes from "./features/auth/auth.routes";
 import HomeRoutes from "./features/home/home.routes";
+import CanActivate from "./guards/CanActivate";
 
 const appRoutes = createBrowserRouter([
   {
@@ -20,7 +21,11 @@ const appRoutes = createBrowserRouter([
 
   {
     path: "/home",
-    element: <PrivateLayout />,
+    element: (
+      <CanActivate authentication>
+        <PrivateLayout />
+      </CanActivate>
+    ),
     errorElement: <ErrorPage />,
     children: [...HomeRoutes],
   },

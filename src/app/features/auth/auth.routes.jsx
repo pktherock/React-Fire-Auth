@@ -1,3 +1,4 @@
+import CanActivate from "../../guards/CanActivate";
 import {
   DeleteUser,
   Login,
@@ -13,24 +14,44 @@ const AuthRoutes = [
     element: <Login />,
   },
   {
+    path: "login",
+    element: <Login />,
+  },
+  {
     path: "register",
     element: <Register />,
   },
   {
     path: "reset-password",
-    element: <ResetPassword />,
+    element: (
+      <CanActivate authentication>
+        <ResetPassword />
+      </CanActivate>
+    ),
   },
   {
     path: "update-password",
-    element: <UpdatePassword />,
+    element: (
+      <CanActivate authentication>
+        <UpdatePassword />
+      </CanActivate>
+    ),
   },
   {
     path: "update-profile",
-    element: <UpdateProfile />,
+    element: (
+      <CanActivate authentication>
+        <UpdateProfile />
+      </CanActivate>
+    ),
   },
   {
     path: "delete-user",
-    element: <DeleteUser />,
+    element: (
+      <CanActivate authentication>
+        <DeleteUser />
+      </CanActivate>
+    ),
   },
 ];
 
