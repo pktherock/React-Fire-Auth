@@ -3,7 +3,7 @@ import {
   DeleteUser,
   Login,
   Register,
-  ResetPassword,
+  ForgotPassword,
   UpdatePassword,
   UpdateProfile,
 } from "./components";
@@ -22,12 +22,8 @@ const AuthRoutes = [
     element: <Register />,
   },
   {
-    path: "reset-password",
-    element: (
-      <CanActivate authentication>
-        <ResetPassword />
-      </CanActivate>
-    ),
+    path: "forgot-password",
+    element: <ForgotPassword />,
   },
   {
     path: "update-password",

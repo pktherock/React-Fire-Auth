@@ -1,3 +1,3 @@
 import authService from "./auth/auth.service";
-
-export { authService };
+import alertService from "./alertService";
+export { authService, alertService };
