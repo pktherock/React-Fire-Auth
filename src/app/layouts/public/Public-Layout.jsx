@@ -7,6 +7,9 @@ function PublicLayout() {
   return (
     <>
       <Header />
+      <h1 className="text-2xl text-center">
+        Built by using React, context API, firebase, tailwind CSS
+      </h1>
       <Outlet />
       <Footer />
     </>

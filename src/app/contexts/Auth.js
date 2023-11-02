@@ -5,6 +5,9 @@ export const AuthContext = createContext({
   signUp: () => {},
   login: () => {},
   logout: () => {},
+  updateEmail: () => {},
+  updatePassword: () => {},
+  deleteUserFromDatabase: () => {},
 });
 
 export const AuthProvider = AuthContext.Provider;

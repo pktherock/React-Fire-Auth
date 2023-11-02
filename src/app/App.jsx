@@ -44,6 +44,44 @@ function App() {
     }
   };
 
+  const deleteUserFromDatabase = async (password) => {
+    const isUserConfirm = confirm("Are you sure?");
+    if (!isUserConfirm) return;
+    try {
+      await authService.deleteUserFromDB(password);
+      alertService.success("User has been deleted successfully");
+      setUser(null);
+    } catch (error) {
+      alertService.error(error.code);
+    }
+  };
+
+  const updateEmail = async (password, email) => {
+    try {
+      const user = await authService.updateUserEmail(password, email);
+      setUser(user);
+      alertService.success(
+        "Email has been sended to new email id please verify first and reload this page"
+      );
+    } catch (error) {
+      alertService.error(error.code);
+    }
+  };
+
+  const updatePassword = async (password, updatePassword) => {
+    try {
+      const user = await authService.updateUserPassword(
+        password,
+        updatePassword
+      );
+      setUser(user);
+      alertService.success("Password has been update successfully");
+      return true;
+    } catch (error) {
+      alertService.error(error.code);
+    }
+  };
+
   useEffect(() => {
     async function fetchUserData() {
       const user = await authService.getCurrentUser();
@@ -56,16 +94,27 @@ function App() {
 
   if (loading) return <h1 className="text-3xl">Loading...</h1>;
 
-  if (user && !user.emailVerified)
+  if (user && !user.emailVerified) {
     return (
       <h1 className="text-3xl text-center">
         Please verify email first and do refresh (check your email for
         verification link)
       </h1>
     );
+  }
 
   return (
-    <AuthProvider value={{ user, signUp, login, logout }}>
+    <AuthProvider
+      value={{
+        user,
+        signUp,
+        login,
+        logout,
+        updateEmail,
+        updatePassword,
+        deleteUserFromDatabase,
+      }}
+    >
       <ToastContainer newestOnTop />
       <RouterProvider router={appRoutes} />
     </AuthProvider>
