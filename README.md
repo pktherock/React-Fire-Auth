@@ -9,6 +9,7 @@
 - Update Email
 - Update Password
 - Update profile (like user name, phone number and profile image)
+- Logout
 - Delete User account from database
 
 ## React + Vite
